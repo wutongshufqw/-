@@ -63,7 +63,11 @@ void dataOutput(field* p, int n, int m)
 {
 	int i, j;
 	for (i = 0; i < n; i++)
+	{
 		printf("%s", (p + i)->fieldCaption);
+		for (j = 0; j <= p[i].fieldLen / 8; j++)
+			printf("\t");
+	}
 	printf("\n");
 	for (i = 0; i < m; i++)
 	{
@@ -72,7 +76,11 @@ void dataOutput(field* p, int n, int m)
 			switch ((p + j)->fieldType)
 			{
 			case 'i': printf("%d\t", *((int*)((p + j)->pf) + i)); break;
-			case 's': printf("%s\t", (char*)((p + j)->pf) + i * (p + j)->fieldLen); break;
+			case 's': printf("%s", (char*)((p + j)->pf) + i * (p + j)->fieldLen); 
+				for (int k = 0; k < p[i].fieldLen - strlen((char*)((p + j)->pf) + i * (p + j)->fieldLen); k++)
+					printf(" ");
+				printf("\t");
+				break;
 			case 'c': printf("%c\t", *((char*)((p + j)->pf) + i)); break;
 			case 'f': printf("%.2f\t", *((float*)((p + j)->pf) + i)); break;
 			case 'd': printf("%.2lf\t", *((double*)((p + j)->pf) + i)); break;
@@ -105,9 +113,9 @@ int function1(FILE* fp)
 int function2(FILE* fp)
 {
 	int n, m, i;
-	fscanf("%d", &n);
+	fscanf(fp,"%d", &n);
 	field* p = (field*)malloc(n * sizeof(field));
-	fscanf(" %d", &m);
+	fscanf(fp," %d", &m);
 	fread(p, sizeof(field), n, fp);
 	for (i = 0; i < n; i++)
 		(p + i)->pf = malloc((p + i)->fieldLen * m);

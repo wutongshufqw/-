@@ -20,8 +20,6 @@ int main()
 			if ((fp = fopen(str, "w")) == NULL)
 			{
 				printf("Warning: Failure to create a file!");
-				printf("按任意键以继续...");
-				getch();
 				continue;
 			}
 			function1(fp);
@@ -36,17 +34,12 @@ int main()
 			if ((fp = fopen(str, "r")) == NULL)
 			{
 				printf("Warning: Failure to open a file!");
-				printf("按任意键以继续...");
-				getch();
 				continue;
 			}
 			function2(fp);
 			fclose(fp);
 			printf("按任意键以继续...");
 			getch();
-		case 'q':
-		case 'Q':return 0;
-		default:break;
 		}
 	}
 	return 0;
