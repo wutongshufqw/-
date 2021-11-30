@@ -24,6 +24,18 @@ int main()
 			}
 			function1(fp);
 			fclose(fp);
+			break;
+		case 'l':
+		case 'L':printf("\n请输入文件名称：");
+			gets(str);
+			strcat(str, ".hws");
+			if ((fp = fopen(str, "r")) == NULL)
+			{
+				printf("Warning: Failure to open a file!");
+				continue;
+			}
+			function2(fp);
+			fclose(fp);
 		}
 	}
 	return 0;

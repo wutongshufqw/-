@@ -14,3 +14,4 @@ void fieldInput(field* p, int n, int m);
 void dataInput(field* p, int n, int m);
 void dataOutput(field* p, int n, int m);
 int function1(FILE* fp);
+int function2(FILE* fp);

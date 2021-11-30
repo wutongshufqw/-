@@ -91,7 +91,7 @@ int function1(FILE* fp)
 	field* p = (field*)malloc(n * sizeof(field));
 	printf("请输入学生人数：");
 	scanf(" %d", &m);
-	fprintf(fp, "%d%d", n, m);
+	fprintf(fp, "%d %d", n, m);
 	getchar();
 	fieldInput(p, n, m);
 	system("cls");
@@ -100,5 +100,19 @@ int function1(FILE* fp)
 	fwrite(p, sizeof(field), n, fp);
 	for (int i = 0; i < n; i++)
 		fwrite(p[i].pf, p[i].fieldLen, m, fp);
+	return 0;
+}
+int function2(FILE* fp)
+{
+	int n, m, i;
+	fscanf("%d", &n);
+	field* p = (field*)malloc(n * sizeof(field));
+	fscanf(" %d", &m);
+	fread(p, sizeof(field), n, fp);
+	for (i = 0; i < n; i++)
+		(p + i)->pf = malloc((p + i)->fieldLen * m);
+	for (int i = 0; i < n; i++)
+		fread(p[i].pf, p[i].fieldLen, m, fp);
+	dataOutput(p, n, m);
 	return 0;
 }
