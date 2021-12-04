@@ -19,7 +19,7 @@ int main()
 			strcat(str, ".hws");
 			if ((fp = fopen(str, "w")) == NULL)
 			{
-				printf("Warning: Failure to create a file!");
+				printf("Warning: Failure to create a file!\n");
 				printf("按任意键以继续...");
 				getch();
 				continue;
@@ -46,7 +46,7 @@ int main()
 			getch();
 		case 'q':
 		case 'Q':return 0;
-		default:break;
+		default:continue;
 		}
 	}
 	return 0;

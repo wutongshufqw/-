@@ -77,7 +77,7 @@ void dataOutput(field* p, int n, int m)
 			{
 			case 'i': printf("%d\t", *((int*)((p + j)->pf) + i)); break;
 			case 's': printf("%s", (char*)((p + j)->pf) + i * (p + j)->fieldLen); 
-				for (int k = 0; k < p[i].fieldLen - strlen((char*)((p + j)->pf) + i * (p + j)->fieldLen); k++)
+				for (int k = 0; k < p[j].fieldLen - strlen((char*)((p + j)->pf) + i * (p + j)->fieldLen); k++)
 					printf(" ");
 				printf("\t");
 				break;
